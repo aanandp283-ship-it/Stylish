@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand's Pottery | Full Stack Development Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2B48C;
+            --accent: #A0522D;
+            --light: #F5F5DC;
+            --dark: #4E3524;
+            --text: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Georgia', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Georgia', serif;
+            font-weight: 700;
+            color: white !important;
+            font-size: 24px;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        a
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .about-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            border-top: 5px solid var(--primary);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .tech-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .demo-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .code-example {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--accent);
+        }
+        
+        .pottery-showcase {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .pottery-showcase:hover {
+            transform: scale(1.03);
+        }
+        
+        .pottery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pottery-showcase:hover .pottery-overlay {
+            height: 100%;
+        }
+        
+        .overlay-text {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--primary);
+            width: 0%;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        /* Interactive Demo Styles */
+        .interactive-demo {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 30px 0;
+        }
+        
+        .pottery-customizer {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .customizer-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .customizer-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .pottery-shape {
+            width: 100px;
+            height: 150px;
+            background-color: var(--secondary);
+            border-radius: 20px 20px 60px 60px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pottery-shape.patterned {
+            background-image: linear-gradient(45deg, var(--secondary) 25%, var(--accent) 25%, 
+                                            var(--accent) 50%, var(--secondary) 50%, 
+                                            var(--secondary) 75%, var(--accent) 75%, var(--accent) 100%);
+            background-size: 20px 20px;
+        }
+        
+        .pottery-shape.engraved {
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pottery-shape.engraved::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 40px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+        
+        .pottery-shape.engraved::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 40px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+        
+        .color-option {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-right: 10px;
+            border: 2px solid transparent;
+        }
+        
+        .color-option.active {
+            border-color: var(--dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .customizer-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hands-clay me-2"></i>Anand's Pottery
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fullstack">Full Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#html">HTML</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#css">CSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bootstrap">Bootstrap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#javascript">JavaScript</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto fade-in">
+                    <h1 class="display-3 fw-bold mb-4">Anand's Pottery & Full Stack Journey</h1>
+                    <p class="lead mb-4">Blending the art of pottery with the science of web development</p>
+                    <a href="#about" class="btn btn-primary btn-lg">Explore My Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p class="lead">Student ID: BI95KT | CET138 Full Stack Development</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="about-content h-100">
+                        <h3 class="mb-4">Anand Pandit</h3>
+                        <p>I am a passionate developer and pottery enthusiast currently studying Full Stack Development. This portfolio represents my journey in understanding web technologies and how they can be applied to create dynamic, engaging web applications.</p>
+                        <p>Just as pottery requires patience, skill, and creativity, so does the craft of web development. Both involve transforming raw materials into something functional and beautiful.</p>
+                        <p>This ePortfolio showcases my understanding of key web technologies as required for the CET138 module assignment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <figure>
+                        <img src="c:\Users\Victus\Desktop\full stack\istockphoto-985041468-612x612.jpg"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Stack Development Section -->
+    <section class="section-padding bg-light" id="fullstack">
+        <div class="container">
+            <div class="section-title">
+                <h2>What is Full Stack Development?</h2>
+                <p class="lead">Understanding both front-end and back-end technologies</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="about-content">
+                        <h3 class="mb-4">The Complete Web Development Process</h3>
+                        <p>Full Stack Development refers to the development of both front-end (client-side) and back-end (server-side) portions of web applications. A full-stack developer is someone who can work on both the visible parts of a website that users interact with, as well as the underlying infrastructure that powers it.</p>
+                        
+                        <div class="row mt-5">
+                            <div class="col-md-6 mb-4">
+                                <div class="tech-card">
+                                    <div class="tech-icon">
+                                        <i class="fas fa-desktop"></i>
+                                    </div>
+                                    <h4>Front-End Development</h4>
+                                    <p>This involves creating what users see and interact with in their browsers. It includes HTML, CSS, JavaScript, and frameworks like Bootstrap.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="tech-card">
+                                    <div class="tech-icon">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <h4>Back-End Development</h4>
+                                    <p>This involves server-side programming, databases, and application logic that users don't see but which power the application functionality.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-box mt-5">
+                            <h4>Demonstration: Pottery Gallery</h4>
+                            <p>This responsive pottery gallery demonstrates full stack concepts with a front-end interface that could connect to a back-end database of pottery items.</p>
+                            <div class="row mt-4">
+                                <div class="col-md-4 mb-3">
+                                    <div class="pottery-showcase">
+                                        
+                                        <div class="pottery-overlay">
+                                            <div class="overlay-text">Handmade Ceramic Bowl</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="pottery-showcase">
+                                       
+                                            <div class="overlay-text">Artisan Vase Collection</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="pottery-showcase">
+                                        <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pottery piece" class="img-fluid">
+                                        <div class="pottery-overlay">
+                                            <div class="overlay-text">Traditional Pottery Set</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HTML Section -->
+    <section class="section-padding" id="html">
+        <div class="container">
+            <div class="section-title">
+                <h2>HTML</h2>
+                <p class="lead">The backbone of web content structure</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <h3 class="mb-4">HyperText Markup Language</h3>
+                        <p>HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It provides the structure and content of a webpage.</p>
+                        
+                        <div class="demo-box mt-5">
+                            <h4>HTML Demonstration: Pottery Product Page</h4>
+                            <p>This example shows semantic HTML5 markup for a pottery product page, using appropriate tags for content structure.</p>
+                            
+                            <div class="code-example mt-4">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Handmade Ceramic Mug&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Artisan Ceramic Mug&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#details"&gt;Details&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section id="product-image"&gt;
+            &lt;figure&gt;
+                &lt;img src="mug.jpg" alt="Handmade ceramic mug"&gt;
+                &lt;figcaption&gt;Hand-thrown stoneware mug&lt;/figcaption&gt;
+            &lt;/figure&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="features"&gt;
+            &lt;h2&gt;Features&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Handcrafted with natural clay&lt;/li&gt;
+                &lt;li&gt;Food-safe glaze&lt;/li&gt;
+                &lt;li&gt;Microwave and dishwasher safe&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2023 Anand's Pottery&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>Key HTML Concepts Demonstrated:</h5>
+                                <ul>
+                                    <li>Semantic HTML5 tags (header, nav, main, section, footer)</li>
+                                    <li>Proper document structure</li>
+                                    <li>Accessibility considerations (alt text, semantic markup)</li>
+                                    <li>Content organization</li>
+                                    <li>Use of figure and figcaption elements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Section -->
+    <section class="section-padding bg-light" id="css">
+        <div class="container">
+            <div class="section-title">
+                <h2>CSS</h2>
+                <p class="lead">Styling and presentation for web content</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <h3 class="mb-4">Cascading Style Sheets</h3>
+                        <p>CSS (Cascading Style Sheets) is used to describe the presentation of web pages, including colors, layout, and fonts. It allows adaptation to different types of devices and screen sizes.</p>
+                        
+                        <div class="demo-box mt-5">
+                            <h4>CSS Demonstration: Styling a Pottery Gallery</h4>
+                            <p>This example shows how CSS can transform a basic HTML structure into an aesthetically pleasing pottery gallery.</p>
+                            
+                            <div class="code-example mt-4">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                                <pre><code>/* Variables for consistent theming */
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #D2B48C;
+    --text-color: #333;
+}
+
+/* Gallery layout using CSS Grid */
+.pottery-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card styling */
+.pottery-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.pottery-item:hover {
+    transform: translateY(-5px);
+}
+
+.pottery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pottery-info {
+    padding: 15px;
+}
+
+.pottery-info h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+/* Responsive design with media queries */
+@media (max-width: 768px) {
+    .pottery-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pottery-gallery {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>Key CSS Concepts Demonstrated:</h5>
+                                <ul>
+                                    <li>CSS variables for consistent theming</li>
+                                    <li>CSS Grid for layout</li>
+                                    <li>Box model (padding, margin, border)</li>
+                                    <li>Transitions and hover effects</li>
+                                    <li>Responsive design with media queries</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap Section -->
+    <section class="section-padding" id="bootstrap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bootstrap Framework</h2>
+                <p class="lead">Popular CSS framework for responsive web design</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <h3 class="mb-4">Building Responsive Websites with Bootstrap</h3>
+                        <p>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.</p>
+                        
+                        <div class="demo-box mt-5">
+                            <h4>Bootstrap Demonstration: Responsive Pottery Store Layout</h4>
+                            <p>This example shows how Bootstrap's grid system and components can create a responsive pottery store layout quickly and efficiently.</p>
+                            
+                            <div class="code-example mt-4">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                                <pre><code>&lt;!-- Bootstrap CDN --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;div class="container mt-5"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-lg-8"&gt;
+            &lt;!-- Product showcase --&gt;
+            &lt;div class="card mb-4"&gt;
+                &lt;img src="pottery.jpg" class="card-img-top" alt="Ceramic vase"&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;h5 class="card-title"&gt;Handmade Ceramic Vase&lt;/h5&gt;
+                    &lt;p class="card-text"&gt;Beautiful hand-thrown vase with intricate glaze patterns.&lt;/p&gt;
+                    &lt;div class="d-flex justify-content-between align-items-center"&gt;
+                        &lt;span class="h4 mb-0"&gt;$45.00&lt;/span&gt;
+                        &lt;button class="btn btn-primary"&gt;Add to Cart&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="col-lg-4"&gt;
+            &lt;!-- Shopping cart --&gt;
+            &lt;div class="card"&gt;
+                &lt;div class="card-header"&gt;
+                    &lt;h5 class="card-title mb-0"&gt;Your Cart&lt;/h5&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p class="card-text"&gt;Your cart is empty.&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;button class="btn btn-outline-secondary w-100"&gt;Checkout&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Related products --&gt;
+            &lt;h5 class="mt-4"&gt;You may also like&lt;/h5&gt;
+            &lt;div class="list-group"&gt;
+                &lt;a href="#" class="list-group-item list-group-item-action"&gt;Small Decorative Bowl&lt;/a&gt;
+                &lt;a href="#" class="list-group-item list-group-item-action"&gt;Set of Coffee Mugs&lt;/a&gt;
+                &lt;a href="#" class="list-group-item list-group-item-action"&gt;Ceramic Planter&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>Key Bootstrap Concepts Demonstrated:</h5>
+                                <ul>
+                                    <li>Responsive grid system</li>
+                                    <li>Pre-styled components (cards, buttons)</li>
+                                    <li>Utility classes for spacing and layout</li>
+                                    <li>Responsive navigation</li>
+                                    <li>Consistent styling across devices</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Section -->
+    <section class="section-padding bg-light" id="javascript">
+        <div class="container">
+            <div class="section-title">
+                <h2>JavaScript</h2>
+                <p class="lead">Adding interactivity to web pages</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <h3 class="mb-4">Dynamic Behavior with JavaScript</h3>
+                        <p>JavaScript is a programming language that enables interactive web pages. It is an essential part of web applications and is supported by all modern web browsers.</p>
+                        
+                        <div class="interactive-demo mt-5">
+                            <h4>Interactive Demonstration: Pottery Customizer</h4>
+                            <p>Customize your virtual pottery piece using the options below. This demonstrates DOM manipulation with JavaScript.</p>
+                            
+                            <div class="pottery-customizer">
+                                <div class="customizer-controls">
+                                    <div>
+                                        <h5>Choose Color:</h5>
+                                        <div>
+                                            <span class="color-option active" style="background-color: #D2B48C;" data-color="terracotta" onclick="changeColor(this)"></span>
+                                            <span class="color-option" style="background-color: #F5F5DC;" data-color="white" onclick="changeColor(this)"></span>
+                                            <span class="color-option" style="background-color: #8B4513;" data-color="brown" onclick="changeColor(this)"></span>
+                                            <span class="color-option" style="background-color: #A0522D;" data-color="sienna" onclick="changeColor(this)"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h5>Choose Style:</h5>
+                                        <select class="form-select" id="styleSelect" onchange="changeStyle()">
+                                            <option value="minimal">Minimal</option>
+                                            <option value="patterned">Patterned</option>
+                                            <option value="engraved">Engraved</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="customizer-preview">
+                                    <div class="pottery-shape" id="potteryShape"></div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <p id="priceDisplay">Price: $45.00</p>
+                                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-box mt-5">
+                            <h4>JavaScript Code: Pottery Customizer Functionality</h4>
+                            <p>This JavaScript code powers the interactive pottery customizer above.</p>
+                            
+                            <div class="code-example mt-4">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                                <pre><code>// JavaScript for pottery customizer
+let currentColor = 'terracotta';
+let currentStyle = 'minimal';
+let basePrice = 45;
+
+// Change pottery color
+function changeColor(element) {
+    // Remove active class from all color options
+    document.querySelectorAll('.color-option').forEach(opt => {
+        opt.classList.remove('active');
+    });
+    
+    // Add active class to clicked option
+    element.classList.add('active');
+    
+    // Update current color
+    currentColor = element.getAttribute('data-color');
+    
+    // Update pottery appearance
+    updatePottery();
+}
+
+// Change pottery style
+function changeStyle() {
+    const styleSelect = document.getElementById('styleSelect');
+    currentStyle = styleSelect.value;
+    updatePottery();
+}
+
+// Update pottery appearance and price
+function updatePottery() {
+    const potteryShape = document.getElementById('potteryShape');
+    const priceDisplay = document.getElementById('priceDisplay');
+    
+    // Reset classes
+    potteryShape.className = 'pottery-shape';
+    
+    // Apply color
+    switch(currentColor) {
+        case 'terracotta':
+            potteryShape.style.backgroundColor = '#D2B48C';
+            break;
+        case 'white':
+            potteryShape.style.backgroundColor = '#F5F5DC';
+            break;
+        case 'brown':
+            potteryShape.style.backgroundColor = '#8B4513';
+            break;
+        case 'sienna':
+            potteryShape.style.backgroundColor = '#A0522D';
+            break;
+    }
+    
+    // Apply style
+    potteryShape.classList.add(currentStyle);
+    
+    // Calculate and display price
+    let stylePrice = 0;
+    if (currentStyle === 'patterned') stylePrice = 20;
+    if (currentStyle === 'engraved') stylePrice = 25;
+    
+    const totalPrice = basePrice + stylePrice;
+    priceDisplay.textContent = `Price: $${totalPrice.toFixed(2)}`;
+}
+
+// Add to cart function
+function addToCart() {
+    alert(`Added ${currentColor} ${currentStyle} pottery to cart!`);
+}
+
+// Initialize
+updatePottery();</code></pre>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>Key JavaScript Concepts Demonstrated:</h5>
+                                <ul>
+                                    <li>DOM manipulation</li>
+                                    <li>Event handling</li>
+                                    <li>Function definition and invocation</li>
+                                    <li>Conditional statements</li>
+                                    <li>Dynamic content updates</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Anand's Pottery</h3>
+                    <p>Blending traditional pottery art with modern web development techniques.</p>
+                    <p>Student ID: BI95KT</p>
+                    <p>CET138 Full Stack Development Assignment</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2023 Anand's Pottery. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript for interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to tech cards on scroll
+            const techCards = document.querySelectorAll('.tech-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            techCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Update year in footer
+            document.querySelector('footer .container .row .col-lg-6:last-child p').innerHTML = 
+                `&copy; ${new Date().getFullYear()} Anand's Pottery. All rights reserved.`;
+                
+            // Initialize pottery customizer
+            updatePottery();
+        });
+
+        // Scroll progress bar
+        window.onscroll = function() { updateProgressBar() };
+
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+            
+            // Show/hide back to top button
+            const backToTop = document.getElementById("backToTop");
+            if (winScroll > 300) {
+                backToTop.classList.add("active");
+            } else {
+                backToTop.classList.remove("active");
+            }
+        }
+
+        // Back to top functionality
+        document.getElementById("backToTop").addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Copy code functionality
+        function copyCode(button) {
+            const codeElement = button.nextElementSibling;
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Visual feedback
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+
+        // Pottery customizer functionality
+        let currentColor = 'terracotta';
+        let currentStyle = 'minimal';
+        let basePrice = 45;
+
+        // Change pottery color
+        function changeColor(element) {
+            // Remove active class from all color options
+            document.querySelectorAll('.color-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            
+            // Add active class to clicked option
+            element.classList.add('active');
+            
+            // Update current color
+            currentColor = element.getAttribute('data-color');
+            
+            // Update pottery appearance
+            updatePottery();
+        }
+
+        // Change pottery style
+        function changeStyle() {
+            const styleSelect = document.getElementById('styleSelect');
+            currentStyle = styleSelect.value;
+            updatePottery();
+        }
+
+        // Update pottery appearance and price
+        function updatePottery() {
+            const potteryShape = document.getElementById('potteryShape');
+            const priceDisplay = document.getElementById('priceDisplay');
+            
+            // Reset classes
+            potteryShape.className = 'pottery-shape';
+            
+            // Apply color
+            switch(currentColor) {
+                case 'terracotta':
+                    potteryShape.style.backgroundColor = '#D2B48C';
+                    break;
+                case 'white':
+                    potteryShape.style.backgroundColor = '#F5F5DC';
+                    break;
+                case 'brown':
+                    potteryShape.style.backgroundColor = '#8B4513';
+                    break;
+                case 'sienna':
+                    potteryShape.style.backgroundColor = '#A0522D';
+                    break;
+            }
+            
+            // Apply style
+            potteryShape.classList.add(currentStyle);
+            
+            // Calculate and display price
+            let stylePrice = 0;
+            if (currentStyle === 'patterned') stylePrice = 20;
+            if (currentStyle === 'engraved') stylePrice = 25;
+            
+            const totalPrice = basePrice + stylePrice;
+            priceDisplay.textContent = `Price: $${totalPrice.toFixed(2)}`;
+        }
+
+        // Add to cart function
+        function addToCart() {
+            alert(`Added ${currentColor} ${currentStyle} pottery to cart!`);
+        }
+    </script>
+</body>
+</html>
